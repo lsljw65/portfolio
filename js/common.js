@@ -3,7 +3,8 @@ $(document).ready(function(){
       var winHeight=0; //브라우저의 높이 변수
       var windowWidth;
       var headerHeight;
-      
+    //   추가 변수(헤더 스크롤 )
+      var $scrollTop;
     //  슬라이더 변수
 
     // 터치 변수 
@@ -20,7 +21,8 @@ $(document).ready(function(){
         });
         console.log("창의 높이 : "+winHeight)
         // 헤더 높이 값 저장(첫번째 section 정리)
-        headerHeight=$("header").height();
+        // 헤더의 위치 이동으로 인한 헤더값 취소
+        headerHeight=0;
         console.log("헤더 높이 ")
         $(".section").eq(0).css({
             height:winHeight-headerHeight
@@ -46,16 +48,15 @@ $(document).ready(function(){
     /* *************************************************************************** */
     // 헤더 네비, 사이드 네비 구성 처리 및 
     var $navBool=true;
-    
     $(".navBt").click(function(){
         if($navBool){
-            $(this).addClass("bt-background")
-            $(".nav-list").addClass("nav-position")
-            $navBool=false;
+        $(this).addClass("bt-background")
+        $(".nav-list").addClass("nav-position")
+        $navBool=false;
         }else{
-            $(".nav-list").removeClass("nav-position")
-            $(this).removeClass("bt-background")
-            $navBool=true; 
+        $(".nav-list").removeClass("nav-position")
+        $(this).removeClass("bt-background")
+        $navBool=true;
         }
     })
     
@@ -77,16 +78,24 @@ $(document).ready(function(){
         $(".section").each(function(index){
             
             $(this).on("DOMMouseScroll mousewheel", function(e){
-                
+
                 if(e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0 ){
                     
                     if($(this).prev() != undefined){
                         var moveTop=$(this).prev().offset().top;
-                        console.log("섹션의 위치 : "+moveTop)
+                        console.log("moveTop : "+moveTop)
                         
                         // 휠을 올렸을 때 애니메이션 할 위치
                         // ///////////////////////////////////////////////////////////////////
-                       
+                        if(moveTop<70 ){
+                            console.log("70보다 작습니다.")
+                            $("header").removeClass("active")
+                                    $("html,body").animate({
+                                        scrollTop:0
+                                    })
+
+                            
+                        }
                         // /////////////////////////////////////////////////////////////////
                     }
                     
@@ -98,7 +107,9 @@ $(document).ready(function(){
                         console.log("섹션의 위치 : "+moveTop)
                         // 휠을 내렸을 때 애니메이션 할 위치
                         // ///////////////////////////////////////////////////////
-                        
+                        if(moveTop>100){
+                            $("header").addClass("active")
+                        }
                         // //////////////////////////////////////////////////////
                         
                     }
