@@ -159,6 +159,9 @@ header{
     height:100%;
     color:white;
   }
+  .optionItem.clickActive{
+    background-color:skyblue;
+  }
 
 
 @media screen and (min-width:450px){
@@ -175,6 +178,29 @@ header{
     header{
         position:static;
         min-width:1024px;
+        /* 애니메이션 추가 */
+        z-index:99999;
+        top:-70px;
+        transition:0.5s;
+        /* 수정  */
+        left:0;
+    }
+
+    /* 헤더 문제 해결 */
+    header.active{
+      position:fixed;
+      top:0;
+      padding:0 50px;
+    }
+    .section:first-child{
+        display:block;
+    }
+    .first-box{
+        width:100%;
+        height:80%;
+        display:flex;
+        justify-content: center;
+        align-items:center;
     }
     
 }
