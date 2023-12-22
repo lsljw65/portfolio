@@ -93,7 +93,7 @@ $(document).ready(function(){
     //휠 함수
       function wheel(){
         // 슬라이드 부분 삽입
-
+        $(".nav-list a").eq(0).addClass("clickActive")
         //-------------휠을 올렸을 때의 동작 -----------------------------------------------
         $(".section").each(function(index){
             
@@ -109,14 +109,10 @@ $(document).ready(function(){
                         // ///////////////////////////////////////////////////////////////////
                         if(moveTop<70 ){
                             console.log("70보다 작습니다.")
-                            $("header").removeClass("active")
-                                    /* // 삭제
-                                    // $("html,body").animate({
-                                    //     scrollTop:0
-                                    // }) */
-
-                            
+                            $("header").removeClass("active")                            
                         }
+                        $(".nav-list a").eq(index).removeClass("clickActive")
+                        $(".nav-list a").eq(index-1).addClass("clickActive")
                         // /////////////////////////////////////////////////////////////////
                     }
                     
@@ -131,6 +127,8 @@ $(document).ready(function(){
                         if(moveTop>100){
                             $("header").addClass("active")
                         }
+                        $(".nav-list a").eq(index).removeClass("clickActive")
+                        $(".nav-list a").eq(index+1).addClass("clickActive")
                         // //////////////////////////////////////////////////////
                         
                     }
