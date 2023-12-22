@@ -5,6 +5,7 @@ $(document).ready(function(){
       var headerHeight;
     //   추가 변수(헤더 스크롤 )
       var $scrollTop;
+      var $hash;
     //  슬라이더 변수
 
     // 터치 변수 
@@ -59,8 +60,27 @@ $(document).ready(function(){
         $navBool=true;
         }
     })
-    
-    
+
+    // 스크롤 애니메이션
+    $(window).scroll(function(){
+        $scrollTop=$(window).scrollTop();
+        if($scrollTop<70){
+            $("header").removeClass("active")
+        }else{
+            $("header").addClass("active")
+        }
+    })
+    // 해시 애니메이션
+    $(".nav-list a").click(function(){
+        $hash=$(this.hash).offset().top
+        $("html,body").stop().animate({
+            scrollTop:$hash
+        })
+        $(".nav-list a").removeClass("clickActive")
+        $(this).addClass("clickActive")
+        $(".nav-list").removeClass("nav-position")
+        $navBool=true;
+    })
     /* *************************************************************************** */
     // 활성/비활성
     
@@ -90,9 +110,10 @@ $(document).ready(function(){
                         if(moveTop<70 ){
                             console.log("70보다 작습니다.")
                             $("header").removeClass("active")
-                                    $("html,body").animate({
-                                        scrollTop:0
-                                    })
+                                    /* // 삭제
+                                    // $("html,body").animate({
+                                    //     scrollTop:0
+                                    // }) */
 
                             
                         }

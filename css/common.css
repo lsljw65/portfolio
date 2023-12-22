@@ -106,6 +106,16 @@ header{
 .nav-list a{
     color:black;
     font-weight: 900;
+    /* 수정 */
+    /* background-color:red; */
+    width:100px;
+    text-align:center;
+    padding:5px 0;
+    border-radius:5px;
+}
+/* 추가 보완 */
+.nav-list a.clickActive{
+    background-color:skyblue;
 }
 
 
@@ -127,6 +137,8 @@ header{
         z-index:99999;
         top:-70px;
         transition:0.5s;
+        /* 수정  */
+        left:0;
     }
     .nav-wrap{
         width:100px;
@@ -148,7 +160,9 @@ header{
     }
     .nav-list a{
         font-size:1rem;
-        margin:0 10px;
+        /* 수정 */
+        margin:0 5px;
+        /* background-color:red; */
     }
     .nav-wrap:hover .nav-list{
         width:100%;
